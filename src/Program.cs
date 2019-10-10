@@ -1,10 +1,8 @@
 ﻿using NumSharp;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using Tensorflow;
-using Tensorflow.Util;
 
 namespace CalcEventsTFS
 {
@@ -36,7 +34,6 @@ namespace CalcEventsTFS
 
         private static void Work()
         {
-            var graph = c_api.TF_NewGraph();
             var status = new Status();
             var opt = new SessionOptions();
 
@@ -69,6 +66,7 @@ namespace CalcEventsTFS
                 }
             }
 
+            session.graph.Dispose();
             session.close();
         }
     }
